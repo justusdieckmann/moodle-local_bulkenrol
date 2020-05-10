@@ -61,7 +61,7 @@ if (empty($localbulkenrolkey)) {
         $emails = $formdata->usermails;
         $courseid = $formdata->id;
 
-        $checkedmails = local_bulkenrol_check_user_mails($emails, $courseid);
+        $checkedmails = local_bulkenrol_check_user_data($emails, $courseid, 'c_1');
 
         // Create local_bulkenrol array in Session.
         if (!isset($SESSION->local_bulkenrol)) {
@@ -98,9 +98,9 @@ if ($localbulkenrolkey) {
             $msg = local_bulkenrol_users($localbulkenrolkey);
 
             if ($msg->status == 'error') {
-                redirect('/user/index.php?id='.$id, "$msg->text", null, \core\output\notification::NOTIFY_ERROR);
+                redirect($CFG->wwwroot . '/user/index.php?id='.$id, "$msg->text", null, \core\output\notification::NOTIFY_ERROR);
             } else {
-                redirect('/user/index.php?id='.$id, "$msg->text", null, \core\output\notification::NOTIFY_SUCCESS);
+                redirect($CFG->wwwroot . '/user/index.php?id='.$id, "$msg->text", null, \core\output\notification::NOTIFY_SUCCESS);
             }
 
         } else {
